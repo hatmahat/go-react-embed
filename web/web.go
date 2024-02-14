@@ -17,6 +17,9 @@ var (
 )
 
 func RegisterHandlers(e *echo.Echo) {
-	e.FileFS("/", "index.html", distIndexHtml)
 	e.StaticFS("/", distDirFS)
+
+	viewer := e.Group("/viewer")
+	viewer.FileFS("/home", "index.html", distIndexHtml)
+	viewer.FileFS("/about", "index.html", distIndexHtml)
 }
